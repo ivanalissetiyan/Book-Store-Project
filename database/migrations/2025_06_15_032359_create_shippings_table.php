@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('shippings', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->string('name');
-            $table->string('slug');
+            $table->unsignedBigInteger('transaction_id');
+            $table->string('shipping_courier');
+            $table->string('shipping_service');
+            $table->decimal('shipping_cost', 8, 2);
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('shippings');
     }
 };

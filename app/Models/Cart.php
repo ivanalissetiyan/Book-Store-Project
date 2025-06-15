@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Cart extends Model
 {
     protected $fillable = 
     [
-        'image', 
-        'name', 
-        'slug'
+        'customer_id', 
+        'product_id', 
+        'qty'
     ];
 }
