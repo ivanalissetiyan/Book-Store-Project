@@ -14,4 +14,10 @@ class Rating extends Model
         'rating',
         'review',
     ];
+
+    // relation one to many rating to customer 
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }

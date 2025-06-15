@@ -12,4 +12,16 @@ class Cart extends Model
         'product_id', 
         'qty'
     ];
+
+    // relation one to many cart to product
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    // relation one to many cart to customer
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }

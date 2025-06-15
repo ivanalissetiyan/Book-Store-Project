@@ -11,4 +11,10 @@ class City extends Model
         'name', 
         'province_id'
     ];
+
+    // relation one to many city to province
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
 }

@@ -13,4 +13,10 @@ class TransactionDetail extends Model
         'qty',
         'price',
     ];
+
+    // relation one to many transaction detail to product
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

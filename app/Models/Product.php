@@ -16,4 +16,16 @@ class Product extends Model
         'price',
         'weight'
     ];
+
+    // relation many to many product to categories
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    // relation one to many product to rating
+     public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
 }
