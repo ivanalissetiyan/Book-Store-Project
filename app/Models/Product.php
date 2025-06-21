@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -27,5 +27,18 @@ class Product extends Model
      public function ratings()
     {
         return $this->hasMany(Rating::class);
+    }
+
+    // Confirm Slug
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Generate slug before saving
+        static::saving(function ($product) {
+            if (empty($product->slug)) {
+                $product->slug = Str::slug($product->title);
+            }
+        });
     }
 }
