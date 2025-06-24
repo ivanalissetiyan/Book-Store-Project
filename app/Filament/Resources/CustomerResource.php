@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\RatingResource\Pages;
-use App\Filament\Resources\RatingResource\RelationManagers;
-use App\Models\Rating;
+use App\Filament\Resources\CustomerResource\Pages;
+use App\Filament\Resources\CustomerResource\RelationManagers;
+use App\Models\Customer;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,21 +13,17 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class RatingResource extends Resource
+class CustomerResource extends Resource
 {
-    protected static ?string $model = Rating::class;
+    protected static ?string $model = Customer::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-sparkles';
-    
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+
     protected static ?string $navigationGroup = 'Ratings & Customers';
-
-    protected static ?string $navigationLabel = 'Ratings & Reviews';
-
-    protected static ?string $pluralLabel = 'Ratings & Reviews';
 
     public static function getNavigationSort(): ?int
     {
-        return 6;
+        return 7;
     }
 
     public static function form(Form $form): Form
@@ -42,11 +38,9 @@ class RatingResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('customer.name')->searchable(),
-                Tables\Columns\TextColumn::make('product.title')->searchable(),
-                Tables\Columns\TextColumn::make('rating'),
-                Tables\Columns\TextColumn::make('review'),
-                Tables\Columns\TextColumn::make('created_at')
+                Tables\Columns\TextColumn::make('name')->searchable(),
+                Tables\Columns\TextColumn::make('email')->searchable(),
+                Tables\Columns\TextColumn::make('created_at')->dateTime(),
             ])
             ->filters([
                 //
@@ -71,7 +65,7 @@ class RatingResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListRatings::route('/'),
+            'index' => Pages\ListCustomers::route('/'),
         ];
     }
 
